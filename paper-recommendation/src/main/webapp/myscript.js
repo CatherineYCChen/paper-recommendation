@@ -61,4 +61,44 @@ function createListElement(text) {
   return liElement;
 }
 
+function myonload(){
+    document.cookie = 'cookie2=value2; SameSite=None; Secure';
+    listAllDoc();
+    //search();
+    searchBar();
+}
+   
+  function searchBar() {
+    var id = '0ac45842-e353-11ea-a223-0242ac130002';
+    var ci_search = document.createElement('script');
+    ci_search.type = 'text/javascript';
+    ci_search.async = true;
+    ci_search.src = 'https://cse.expertrec.com/api/js/ci_common.js?id=' + id;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(ci_search, s);
+  }
+    
+function listAllDoc(){
+    //var f = fetch('config.json');
+    console.log('hello');
+    
+		fetch('config.json').then((r) => r.json()).then((json) =>{  
+			var keys = Object.keys(json);
+			var html="";
+            html += "<ul id=\"myUL\">"
 
+			for (var i=0; i< keys.length; i++){
+				var keyHeader="<h3 style=\"padding: 0px 15px\">"+keys[i]+"</h3>"
+				html += keyHeader;
+				for(var j=0; j<json[keys[i]].length; j++){
+					path = "config?id="+json[keys[i]][j]['id'];
+  					html+="<li><a href="+path + ">"+ json[keys[i]][j]['title'] +"</a></li>"
+				}
+
+			}
+			html += "</ul>"
+
+    		document.getElementById('all-paper').innerHTML=html
+            
+		});
+}

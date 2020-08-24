@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="YRF7kMRCTsbkTDTnjoSwGkpo6IWikqNwAvBk5ly7HDI" />
     <link rel="stylesheet" href="style.css">
     <title>Paper Recommendation System</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="script.js"></script>
+    <script src="myscript.js"></script>
+  
   </head>
   
   <body>
@@ -19,14 +21,14 @@
 </div>
 
 <!-- Search Bar -->
-<body onload="search()">
+<body onload="myonload()"> 
+
 <form method="POST" action="/data">
 <div class="wrap">
+    
+
    <div class="search">    
-      <input type="text" class="searchTerm" placeholder="Search" name = "search">
-      <button type="submit" class="searchButton">
-        <i class="fa fa-search"></i>
-     </button>
+       <ci-search></ci-search>
    </div>  
 </div>
 </form>
@@ -39,7 +41,7 @@
 <!-- Page content -->
 
 <!-- Search Results -->
-<h2 style="padding: 0px 15px">Search Results</h2>
+<h2 style="padding: 0px 15px">Search History</h2>
 <div class="dropdown">
   <span>Result 1</span>
   <div class="dropdown-content">
@@ -141,20 +143,11 @@
 </div>
 
 <!-- End page content -->
-<h2 style="padding: 0px 15px">Search</h2>
+<!--<h2 style="padding: 0px 15px">Search</h2>
 
 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for a paper.." title="Type in a name" >
-
-<ul id="myUL">
-  <li><a href="#">Paper 1</a></li>
-  <li><a href="#">Paper 2</a></li>
-  <li><a href="#">Paper 3</a></li>
-  <li><a href="#">Paper 4</a></li>
-  <li><a href="#">Paper 5</a></li>
-  <li><a href="#">Paper 6</a></li>
-  <li><a href="#">Paper 7</a></li>
-</ul>
-
+-->
+<div id='all-paper'></div>
 
 <script async src="https://cse.google.com/cse.js?cx=000888210889775888983:pqb3ch1ewhg"></script>
 <div class="gcse-searchbox-only" data-resultsUrl="https://googlecustomsearch.appspot.com/elementv2/two-page_results_elements_v2.html?query=test"></div>
