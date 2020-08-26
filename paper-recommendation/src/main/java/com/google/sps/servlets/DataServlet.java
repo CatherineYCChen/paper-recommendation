@@ -85,7 +85,8 @@ public class DataServlet extends HttpServlet {
       Query query = new Query("config").setFilter(new Query.FilterPredicate("id", Query.FilterOperator.EQUAL, id));
       PreparedQuery results = datastore.prepare(query);
       Entity configEntity = results.asSingleEntity();
-      PaperConfig p_config = new PaperConfig((String) configEntity.getProperty("id"), (String)configEntity.getProperty("submitter"), (String)configEntity.getProperty("title"), (String)configEntity.getProperty("comments"), (String)configEntity.getProperty("journalRef"), (String)configEntity.getProperty("doi"), (String)configEntity.getProperty("abstract"), (String)configEntity.getProperty("reportNo"), (List<String>)configEntity.getProperty("categories"), (List<String>)configEntity.getProperty("versions"));
+      PaperConfig p_config = new PaperConfig((String) configEntity.getProperty("id"), (String)configEntity.getProperty("submitter"), (String)configEntity.getProperty("title"), (String)configEntity.getProperty("comments"), (String)configEntity.getProperty("journalRef"), (String)configEntity.getProperty("doi"), (String)configEntity.getProperty("abstract"),
+       (String)configEntity.getProperty("reportNo"),(List<String>)configEntity.getProperty("categories"), (List<String>)configEntity.getProperty("versions"));
       String jsonInString = gson.toJson(p_config);
 
       //response.setContentType("application/json;");
@@ -98,53 +99,39 @@ public class DataServlet extends HttpServlet {
       pageHtml+= "<meta charset=\"UTF-8\">";
       pageHtml+="<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">";
       pageHtml+="<link rel=\"stylesheet\" href=\"style.css\">";
-      pageHtml+="<title>Paper Recommendation System</title>";
+      pageHtml+=String.format("<title>%s</title>", p_config.getTitle());
       pageHtml+="<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js\"></script>";
       pageHtml+="<script src=\"https://www.gstatic.com/charts/loader.js\"></script>";
+      pageHtml+="<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">";
       pageHtml+="<script src=\"myscript.js\"></script>"; 
       pageHtml+= "</head>";
       pageHtml+="<body>";
-      pageHtml+="<div class=\"header\">";
+      pageHtml+="<div class=\"header1\">";
+      pageHtml+="<i class=\"fa fa-newspaper-o\" style=\"font-size:40px\"></i>";
       pageHtml+="<h1>Paper Recommendation System</h1>";
-      pageHtml+="<p>Google SPS 2020 Summer</p>";
-      pageHtml+="<a href='index.html'> Home </a>";
+      pageHtml+="<a href='index.html' style =\"color:white\"><i class=\"fa fa-home\" style=\"font-size:60px\"></i></a>";
       pageHtml+="</div>";
       
-      pageHtml+="<h2 style=\"padding: 0px 15px\">Content</h2>";
+      pageHtml+="<h2 style=\"padding: 0px 15px\">Paper Information</h2>";
       pageHtml+="<div class=\"dropdown\">";
       pageHtml+=String.format("<span>%s</span>", p_config.getTitle());
       pageHtml+="<div class=\"dropdown-content\">";
       pageHtml+=String.format("<p><b>Author:</b> %s</p>", p_config.getSubmitter());
-      pageHtml+=String.format("<p><b>doi:</b>  %s</p>", p_config.getDoi());
-      pageHtml+=String.format("<p><b>comments:</b>  %s</p>", p_config.getComments());
+      pageHtml+=String.format("<p><b>DOI:</b>  %s</p>", p_config.getDoi());
+      pageHtml+=String.format("<p><b>Comments:</b>  %s</p>", p_config.getComments());
       pageHtml+=String.format("<p>Get from <a href=https://arxiv.org/abs/%s>airXiv</a></p>", p_config.getId());
       pageHtml+=String.format("<p><b>Abstract:</b> %s</p>", p_config.getAbstract());
-      pageHtml+="<div class=\"rate\">";
-      pageHtml+="<input type=\"radio\" id=\"star5.0\" name=\"rate\" value=\"5\" />";
-      pageHtml+="<label for=\"star5.0\" title=\"text\">5 stars</label>";
-      pageHtml+="<input type=\"radio\" id=\"star4.0\" name=\"rate\" value=\"4\" />";
-      pageHtml+="<label for=\"star4\" title=\"text\">4 stars</label>";
-      pageHtml+="<input type=\"radio\" id=\"star3.0\" name=\"rate\" value=\"3\" />";
-      pageHtml+="<label for=\"star3.0\" title=\"text\">3 stars</label>";
-      pageHtml+="<input type=\"radio\" id=\"star2.0\" name=\"rate\" value=\"2\" />";
-      pageHtml+="<label for=\"star2.0\" title=\"text\">2 stars</label>";
-      pageHtml+="<input type=\"radio\" id=\"star1.0\" name=\"rate\" value=\"1\" />";
-      pageHtml+="<label for=\"star1.0\" title=\"text\">1 star</label>";
-      pageHtml+="</div>";
-
       pageHtml+="</div>";
       pageHtml+="<br>";
 
       pageHtml+="<h2 style=\"padding: 0px 15px\">Related Topics</h2>";
       pageHtml+="<br>";
 
-      pageHtml+="<br>";
-      pageHtml+=String.format("<embed src='https://arxiv.org/pdf/%s.pdf' width=\"800px\" height=\"2100px\" />", p_config.getId());
+      pageHtml+=String.format("<embed src='https://arxiv.org/pdf/%s.pdf' width=\"800px\" height=\"2100px\" style=\"margin:auto\" style = \"display:block\" />", p_config.getId());
       pageHtml+="</div>";
       pageHtml+="</body>";
       pageHtml+="</html>";
     response.getWriter().println(pageHtml);
-
 
   }
 }
