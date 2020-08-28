@@ -109,20 +109,16 @@ public class DataServlet extends HttpServlet {
       
       pageHtml+="<h2 style=\"padding: 0px 15px\">Paper Information</h2>";
       pageHtml+="<div class=\"w3-container\">";
-      pageHtml+="<div class=\"dropdown\">";
       pageHtml+=String.format("<h3><span>%s</span></h3>", p_config.getTitle());
-      pageHtml+="<div class=\"dropdown-content\">";
       pageHtml+=String.format("<p><b>Author:</b> %s</p>", p_config.getSubmitter());
       pageHtml+=String.format("<p><b>DOI:</b>  %s</p>", p_config.getDoi());
       pageHtml+=String.format("<p><b>Comments:</b>  %s</p>", p_config.getComments());
       pageHtml+=String.format("<p>Get from <a href=https://arxiv.org/abs/%s>airXiv</a></p>", p_config.getId());
       pageHtml+=String.format("<p><b>Abstract:</b> %s</p>", p_config.getAbstract());
       pageHtml+="</div>";
-      pageHtml+="</div>";
-      pageHtml+="</div>";
 
 
-      pageHtml+="<h2 style=\"padding: 0px 15px\">Papers You might likes</h2>";
+      pageHtml+="<h2 style=\"padding: 0px 15px\">Papers You Might Like</h2>";
 
       pageHtml+="<div class=\"full hide-scroll\">";
       pageHtml+="<ul class='hs'>";
@@ -142,7 +138,6 @@ public class DataServlet extends HttpServlet {
       pageHtml+="</div>";
 
       pageHtml+="<h2 style=\"padding: 0px 15px\">Tell Us How Useful is This Paper?</h2>";
-      pageHtml+="<div class=\"w3-container\">";
       pageHtml+="<div class=\"rate\">";
       pageHtml+="<input type=\"radio\" id=\"star5.0\" name=\"rate\" value=\"5\" />";
       pageHtml+="<label for=\"star5.0\" title=\"text\">5 stars</label>";
@@ -154,7 +149,6 @@ public class DataServlet extends HttpServlet {
       pageHtml+="<label for=\"star2.0\" title=\"text\">2 stars</label>";
       pageHtml+="<input type=\"radio\" id=\"star1.0\" name=\"rate\" value=\"1\" />";
       pageHtml+="<label for=\"star1.0\" title=\"text\">1 star</label>";
-      pageHtml+="</div>";
       pageHtml+="</div>";
 
 
