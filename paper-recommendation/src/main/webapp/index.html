@@ -8,40 +8,35 @@
     <title>Paper Recommendation System</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="myscript.js"></script>
-  
   </head>
   
   <body>
 
 <!-- Header -->
 <div class="header">
+  <i class="fa fa-newspaper-o" style="font-size:200px"></i>
   <h1>Paper Recommendation System</h1>
   <p>Google SPS 2020 Summer</p>
+    <!-- Search Bar -->
+    <body onload="myonload()"> 
+    <form method="POST" action="/data">
+        <div class="wrap">   
+        <ci-search></ci-search>
+        </div>
+    </form>
+    </body>
 </div>
 
-<!-- Search Bar -->
-<body onload="myonload()"> 
-
-<form method="POST" action="/data">
-<div class="wrap">
-    
-
-   <div class="search">    
-       <ci-search></ci-search>
-   </div>  
-</div>
-</form>
-</body>
-
-<div class="space"></div>
-<p style="text-align:center">Move the mouse over the text below to see more info about the paper.</p>
-
-<ul id="history"></ul>
+<div class = "space"></div>
 <!-- Page content -->
+<h2 style="padding: 0px 15px">List of Papers</h2>
+<div id='all-paper'></div>
 
-<!-- Search Results -->
+<!-- Search History 
 <h2 style="padding: 0px 15px">Search History</h2>
+<ul id="history"></ul>
 <div class="dropdown">
   <span>Result 1</span>
   <div class="dropdown-content">
@@ -50,108 +45,9 @@
   <p>Keywords: xxx &nbsp; Citation: xxx</p>
   <p>Full pdf url: <a href= "https://www.google.com">url</a></p>
   <p>Abstract: xxx</p>
-  <!-- Ratings -->
-    <div class="rate">
-        <input type="radio" id="star5" name="rate" value="5" />
-        <label for="star5" title="text">5 stars</label>
-        <input type="radio" id="star4" name="rate" value="4" />
-        <label for="star4" title="text">4 stars</label>
-        <input type="radio" id="star3" name="rate" value="3" />
-        <label for="star3" title="text">3 stars</label>
-        <input type="radio" id="star2" name="rate" value="2" />
-        <label for="star2" title="text">2 stars</label>
-        <input type="radio" id="star1" name="rate" value="1" />
-        <label for="star1" title="text">1 star</label>
-    </div>
     </div>
   </div>
-</div>
-
-<!-- Recommendations -->
-<h2 style="padding: 0px 15px">Recommendations</h2>
-
-<div class="dropdown">
-  <span>Paper 1</span>
-  <div class="dropdown-content">
-  <p>Title: xxx &nbsp; Author: xxx</p>
-  <p>Conference: xxx &nbsp; Year: xxx &nbsp; doi: xxx</p>
-  <p>Keywords: xxx &nbsp; Citation: xxx</p>
-  <p>Full pdf url: <a href= "https://www.google.com">url</a></p>
-  <p>Abstract: xxx</p>
-  <!-- Ratings -->
-    <div class="rate">
-        <input type="radio" id="star5.0" name="rate" value="5" />
-        <label for="star5.0" title="text">5 stars</label>
-        <input type="radio" id="star4.0" name="rate" value="4" />
-        <label for="star4" title="text">4 stars</label>
-        <input type="radio" id="star3.0" name="rate" value="3" />
-        <label for="star3.0" title="text">3 stars</label>
-        <input type="radio" id="star2.0" name="rate" value="2" />
-        <label for="star2.0" title="text">2 stars</label>
-        <input type="radio" id="star1.0" name="rate" value="1" />
-        <label for="star1.0" title="text">1 star</label>
-    </div>
-  </div>
-</div>
-<br>
-<div class="dropdown">
-  <span>Paper 2</span>
-  <div class="dropdown-content">
-  <p>Title: xxx &nbsp; Author: xxx</p>
-  <p>Conference: xxx &nbsp; Year: xxx &nbsp; doi: xxx</p>
-  <p>Keywords: xxx &nbsp; Citation: xxx</p>
-  <p>Full pdf url: <a href= "https://www.google.com">url</a></p>
-  <p>Abstract: xxx</p>
- 
-    <div class="rate">
-        <input type="radio" id="star5.1" name="rate" value="5" />
-        <label for="star5.1" title="text">5 stars</label>
-        <input type="radio" id="star4.1" name="rate" value="4" />
-        <label for="star4.1" title="text">4 stars</label>
-        <input type="radio" id="star3.1" name="rate" value="3" />
-        <label for="star3.1" title="text">3 stars</label>
-        <input type="radio" id="star2.1" name="rate" value="2" />
-        <label for="star2.1" title="text">2 stars</label>
-        <input type="radio" id="star1.1" name="rate" value="1" />
-        <label for="star1.1" title="text">1 star</label>
-    </div>
-  </div>
-</div>
-<br>
-<div class="dropdown">
-  <span>Paper 3</span>
-  <div class="dropdown-content">
-  <p>Title: xxx &nbsp; Author: xxx</p>
-  <p>Conference: xxx &nbsp; Year: xxx &nbsp; doi: xxx</p>
-  <p>Keywords: xxx &nbsp; Citation: xxx</p>
-  <p>Full pdf url: <a href= "https://www.google.com">url</a></p>
-  <p>Abstract: xxx</p>
-  <!-- Ratings -->
-    <div class="rate">
-        <input type="radio" id="star5.2" name="rate" value="5" />
-        <label for="star5.2" title="text">5 stars</label>
-        <input type="radio" id="star4.2" name="rate" value="4" />
-        <label for="star4.2" title="text">4 stars</label>
-        <input type="radio" id="star3.2" name="rate" value="3" />
-        <label for="star3.2" title="text">3 stars</label>
-        <input type="radio" id="star2.2" name="rate" value="2" />
-        <label for="star2.2" title="text">2 stars</label>
-        <input type="radio" id="star1.2" name="rate" value="1" />
-        <label for="star1.2" title="text">1 star</label>
-    </div>
-  </div>
-</div>
-
-<!-- End page content -->
-<!--<h2 style="padding: 0px 15px">Search</h2>
-
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for a paper.." title="Type in a name" >
 -->
-<div id='all-paper'></div>
-
-<script async src="https://cse.google.com/cse.js?cx=000888210889775888983:pqb3ch1ewhg"></script>
-<div class="gcse-searchbox-only" data-resultsUrl="https://googlecustomsearch.appspot.com/elementv2/two-page_results_elements_v2.html?query=test"></div>
-
-
-  </body>
+</div>
+</body>
 </html>

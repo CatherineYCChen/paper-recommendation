@@ -29,20 +29,7 @@ function myFunction() {
         }
     }
 }
-/*
-$('.like, .dislike').on('click', function() {
-    event.preventDefault();
-    $('.active').removeClass('active');
-    $(this).addClass('active');
-});
-document.querySelector(".like, .dislike")
-    .addEventListener("click", function(){
-        event.preventDefault();
-        document.querySelector(".active").classList.remove("active");
-        this.classList.add(".active");
 
-    });
-*/
 function search() {
   fetch('/data').then(response => response.json()).then((tasks) => {
 
@@ -67,8 +54,11 @@ function myonload(){
     //search();
     searchBar();
 }
+function samesite(){
+    document.cookie = 'cookie2=value2; SameSite=None; Secure';
+}
    
-  function searchBar() {
+function searchBar() {
     var id = '0ac45842-e353-11ea-a223-0242ac130002';
     var ci_search = document.createElement('script');
     ci_search.type = 'text/javascript';
@@ -76,13 +66,10 @@ function myonload(){
     ci_search.src = 'https://cse.expertrec.com/api/js/ci_common.js?id=' + id;
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(ci_search, s);
-  }
+}
     
-function listAllDoc(){
-    //var f = fetch('config.json');
-    console.log('hello');
-    
-		fetch('config.json').then((r) => r.json()).then((json) =>{  
+function listAllDoc(){    
+		fetch('nlp_bert_by_cate.json').then((r) => r.json()).then((json) =>{  
 			var keys = Object.keys(json);
 			var html="";
             html += "<ul id=\"myUL\">"

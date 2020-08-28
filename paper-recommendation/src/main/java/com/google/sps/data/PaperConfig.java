@@ -6,17 +6,19 @@ public final class PaperConfig {
 
   private final String id;
   private final String submitter;
+  private final String authors;
   private final String title;
   private final String comments;
-  private final String journalRef;
   private final String doi;
+  private final String categories;
   private final String abstract_;
+  private final String journalRef;
   private final String reportNo;
-  private final List<String> categories;
-  private final List<String> versions;
+  private final List<String> recommend;
 
-  public PaperConfig(String id, String submitter, String title, String comments, String journalRef, String doi, String abstract_, String reportNo, List<String> categories, List<String> versions) {
+  public PaperConfig(String id, String submitter, String authors, String title, String comments, String doi, String categories,String abstract_,String journalRef,   String reportNo,  List<String> recommend) {
     this.id = id;
+    this.authors = authors;
     this.submitter = submitter;
     this.title = title;
     this.comments = comments;
@@ -25,37 +27,43 @@ public final class PaperConfig {
     this.abstract_ = abstract_;
     this.reportNo = reportNo;
     this.categories = categories;
-    this.versions = versions;
+    this.recommend = recommend;
+
   }
   public String getId() {
     return id;
   }
-
   public String getSubmitter() {
     return submitter;
   }
+  public String getAuthors() {
+    return authors;
+  }
+  
   public String getTitle() {
     return title;
   }
   public String getComments() {
     return comments;
   }
-  public String getJournalRef() {
-    return journalRef;
-  }
-  public String getDoi() {
+   public String getDoi() {
     return doi;
+  }
+  public String getCategories() {
+    return categories;
   }
   public String getAbstract() {
     return abstract_;
   }
+  
+  public String getJournalRef() {
+    return journalRef;
+  }
   public String getReportNo() {
     return reportNo;
   }
-  public List<String> getCategories() {
-    return categories;
+  public List<String> getRecommend() {
+    return recommend;
   }
-  public List<String> getVersions() {
-    return versions;
-  }
+  
 }
